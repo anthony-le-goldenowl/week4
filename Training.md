@@ -27,17 +27,14 @@
 
 ### DATABASE RELATIONSHIPS
   |     Type of relationship     | Description                                                                              |
-  | ---------------------------- |:----------------------------------------------------------------------------------------:|
+  | ---------------------------- |------------------------------------------------------------------------------------------|
   | One-to-one                   | - Both tables can have only one record on each side of the relationship.                 |
   |                              | - Each primary key value relates to none or only one record in the related table.        |
   |                              | - Most one-to-one relationships are forced by business rules and do not flow naturally   |
   |                              | from the data. Without such a rule, you can typically combine both tables without        |
   |                              | breaking any normalization rules.                                                        |
-  | ---------------------------- |:----------------------------------------------------------------------------------------:|
   | One-to-many                  | - The primary key table contains only one record that relates to none, one or many       |
   |                              | records in related table.                                                                |
-  | ---------------------------- |:----------------------------------------------------------------------------------------:|
   |Many-to-many                  | - Each record in both tables can relate to none or any number of records in the other    |
   |                              | table. These relationships require a third table, called an associate or linking table,  |
   |                              | because relational systems cannot directly accommodate the relationship.                 |
-  |----------------------------- |:----------------------------------------------------------------------------------------:|
