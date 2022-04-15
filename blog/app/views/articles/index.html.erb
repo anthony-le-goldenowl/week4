@@ -3,7 +3,7 @@
 <ul>
   <% @articles.each do |article| %>
     <li>
-      <%= link_to article.title, article %>
+      <%= link_to article.title, article %> | <%= link_to "See comment", article_comments_path(article) %>
     </li>
   <% end %>
 </ul>

@@ -1,0 +1,5 @@
+<% @article.comments.each do |comment| %>
+  <h2>Comment <%= comment.id%></h2>
+  <div><%= comment.commenter %></div>
+  <div><%= comment.body %></div>
+<%end%>
