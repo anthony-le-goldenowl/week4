@@ -1,22 +1,22 @@
-class ArticlesController < ApplicationController
+# frozen_string_literal: true
 
-  http_basic_authenticate_with name: "admin", password: "1", except: [:index, :show]  
-  
+# Articles Controller
+class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: 'admin', password: '1', except: %i[index show]
+
+  before_action :prepare_article, only: %i[show create edit update destroy]
+
   def index
     @articles = Article.all
   end
 
-  def show
-    @article = Article.find(params[:id])
-  end
+  def show; end
 
   def new
     @article = Article.new
   end
 
   def create
-    @article = Article.new(article_params)
-
     if @article.save
       redirect_to @article
     else
@@ -24,13 +24,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
       redirect_to @article
     else
@@ -39,14 +35,18 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to root_path, status: :see_other
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :body, :status)
-    end
+
+  def article_params
+    params.require(:article).permit(:title, :body, :status)
+  end
+
+  def prepare_article
+    @article ||= Article.find(params[:id])
+  end
 end

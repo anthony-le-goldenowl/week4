@@ -1,26 +1,33 @@
+# frozen_string_literal: true
+
+# CommentsController
 class CommentsController < ApplicationController
-  http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
-  def index
-    @article = Article.find(params[:article_id])
-  end
+  http_basic_authenticate_with name: 'admin', password: '1', only: :destroy
+
+  before_action :prepare_article, only: %i[index create destroy show]
+
+  def index; end
+
   def create
-    @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
     redirect_to article_path(@article)
   end
+
   def destroy
-    @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy
     redirect_to article_path(@article)
   end
-  def show
-    @article = Article.find(params[:article_id])
-  end
+
+  def show; end
 
   private
-    def comment_params
-      params.require(:comment).permit(:commenter, :body, :status)
-    end
-end
 
+  def comment_params
+    params.require(:comment).permit(:commenter, :body, :status)
+  end
+
+  def prepare_article
+    @article ||= Article.find(params[:article_id])
+  end
+end
