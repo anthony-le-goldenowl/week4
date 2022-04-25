@@ -1,0 +1,22 @@
+<h1>Sign in</h1>
+<%= form_with url: signin_path do %>
+  <table>
+    <tr>
+      <th>
+        <%= label_tag :email %>
+      </th>
+      <td>
+        <%= text_field_tag :email %><br>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <%= label_tag :password %>
+      </th>
+      <td> 
+        <%= password_field_tag :password %><br>
+      </td>
+    </tr>
+  </table>
+  <%= submit_tag "Sign in" %>
+<% end %>
